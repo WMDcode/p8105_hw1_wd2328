@@ -13,9 +13,33 @@ library(moderndive)
 data("early_january_weather")
 ```
 
-The data set, `early_january_weather`, is a data-frame of hourly meteorological data taken from LGA, JFK, and EWR airports during the month of January 2013 and consists of `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. Recorded data includes origin, year, month, day, hour, temperature and dew-point in F, relative humidity, wind direction (degrees), speed and gust speed (mph), precipitation (inches), pressure (millibars), visibility (miles), and a time record in POSIXct format. The mean temperature is `r mean(early_january_weather$temp)` F.
+The data set, `early_january_weather`, is a data-frame of hourly meteorological data taken from LGA, JFK, and EWR airports during January 1-15, 2013 and consists of `r nrow(early_january_weather)` rows and `r ncol(early_january_weather)` columns. Recorded data includes origin, year, month, day, hour, temperature and dew-point in F, relative humidity, wind direction (degrees), speed and gust speed (mph), precipitation (inches), pressure (millibars), visibility (miles), and a time record in POSIXct format. The mean temperature is `r mean(early_january_weather$temp)` F.
 
 ```{r}
 ggplot(early_january_weather, aes(x=time_hour, y=temp, color=humid)) + geom_point()
 ```
+
+From this plot, it can be seen that temperature fluctuates in cycles with the day, generally increasing during day and decreasing at night.Also, there was a gradual increase in mean temperature from the start of the month to the middle of the month. Humidity also increases and is higher in the middle of the month, leading to the conclusion that humidity may be associated with higher temperatures.
+
+# Problem 2
+
+```{r}
+pr2_df = tibble(
+  sample = rnorm(10),
+  more_than_ten = sample > 10,
+  char_vec = c("this", "is", "my", "character", "vector", "of", "length", "ten", "for", "problem2"),
+  factor_vec = factor(c("level1", "level1", "level1", "level2", "level2", "level2", "level3", "level3", "level3", "level3"))
+)
+```
+Trying to take the mean of each variable in the data-frame gives us:
+
+`sample`: `r mean(pr2_df$sample)`  
+`more_than_ten`: `r mean(pr2_df$more_than_ten)`  
+`char_vec`: `r mean(pr2_df$char_vec)`  
+`factor_vec`: `r mean(pr2_df$factor_vec)`  
+
+Expectedly, the `sample` variable works as intended and returns a value. Unexpectedly, `more_than_ten`, a variable consisting of TRUE/FALSE also returns a value. This is because TRUE is given a value of 1 and FALSE is given a value of 0. If the mean returns 0, like in this case, all values must be FALSE, meaning none of our sample values are greater than 10. The `char_vec` and `factor_vec` both return NA since the mean can not be evaluated for character and factor variables.
+
+
+
 
