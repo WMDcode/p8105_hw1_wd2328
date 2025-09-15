@@ -388,7 +388,7 @@ humidity may be associated with higher temperatures.</p>
 )</code></pre>
 <p>Trying to take the mean of each variable in the data-frame gives
 us:</p>
-<p><code>sample</code>: 0.09344<br />
+<p><code>sample</code>: -0.0296874<br />
 <code>more_than_ten</code>: 0<br />
 <code>char_vec</code>: NA<br />
 <code>factor_vec</code>: NA</p>
@@ -400,6 +400,16 @@ given a value of 1 and FALSE is given a value of 0. If the mean returns
 sample values are greater than 10. The <code>char_vec</code> and
 <code>factor_vec</code> both return NA since the mean can not be
 evaluated for character and factor variables.</p>
+<pre class="r"><code>as.numeric(pr2_df$more_than_ten)
+as.numeric(pr2_df$char_vec)
+as.numeric(pr2_df$factor_vec)</code></pre>
+<p>When converting these variables to numeric, elements in the logical
+vector, <code>more_than_ten</code>, become either 1 or 0, based on their
+TRUE/FALSE counterpart. As mentioned earlier, this is why the mean of
+<code>more_than_ten</code> is 0. The elements in the character vector,
+<code>char_vec</code>, become “NA”. The elements of the factor vector,
+<code>factor_vec</code>, become either 1, 2, or 3. Since there were
+three factor “levels”, the factors are just numbered 1-3.</p>
 </div>
 
 

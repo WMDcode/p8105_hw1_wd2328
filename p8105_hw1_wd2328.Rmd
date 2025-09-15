@@ -33,13 +33,19 @@ pr2_df = tibble(
 ```
 Trying to take the mean of each variable in the data-frame gives us:
 
-`sample`: `r mean(pr2_df$sample)`  
-`more_than_ten`: `r mean(pr2_df$more_than_ten)`  
-`char_vec`: `r mean(pr2_df$char_vec)`  
-`factor_vec`: `r mean(pr2_df$factor_vec)`  
+`sample`: `r mean(pull(pr2_df, sample))`  
+`more_than_ten`: `r mean(pull(pr2_df, more_than_ten))`  
+`char_vec`: `r mean(pull(pr2_df, char_vec))`  
+`factor_vec`: `r mean(pull(pr2_df, factor_vec))`  
 
 Expectedly, the `sample` variable works as intended and returns a value. Unexpectedly, `more_than_ten`, a variable consisting of TRUE/FALSE also returns a value. This is because TRUE is given a value of 1 and FALSE is given a value of 0. If the mean returns 0, like in this case, all values must be FALSE, meaning none of our sample values are greater than 10. The `char_vec` and `factor_vec` both return NA since the mean can not be evaluated for character and factor variables.
 
+```{r warning=FALSE, results='hide'}
+as.numeric(pr2_df$more_than_ten)
+as.numeric(pr2_df$char_vec)
+as.numeric(pr2_df$factor_vec)
+```
 
+When converting these variables to numeric, elements in the logical vector, `more_than_ten`, become either 1 or 0, based on their TRUE/FALSE counterpart. As mentioned earlier, this is why the mean of `more_than_ten` is 0. The elements in the character vector, `char_vec`, become "NA". The elements of the factor vector, `factor_vec`, become either 1, 2, or 3. Since there were three factor "levels", the factors are just numbered 1-3.
 
 
