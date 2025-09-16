@@ -19,7 +19,7 @@ The data set, `early_january_weather`, is a data-frame of hourly meteorological 
 ggplot(early_january_weather, aes(x=time_hour, y=temp, color=humid)) + geom_point()
 ```
 
-From this plot, it can be seen that temperature fluctuates in cycles with the day, generally increasing during day and decreasing at night.Also, there was a gradual increase in mean temperature from the start of the month to the middle of the month. Humidity also increases and is higher in the middle of the month, leading to the conclusion that humidity may be associated with higher temperatures.
+From this plot, it can be seen that temperature fluctuates in cycles with the day, generally increasing during day and decreasing at night. Also, there was a gradual increase in mean temperature from the start of the month to the middle of the month. Humidity also increases and is higher in the middle of the month, leading to the conclusion that humidity may be associated with higher temperatures.
 
 # Problem 2
 
